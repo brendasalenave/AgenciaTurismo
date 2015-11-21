@@ -1,3 +1,7 @@
+
+import javax.swing.JFormattedTextField;
+import javax.swing.JTextField;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,12 +13,11 @@
  * @author mdonato
  */
 public class ClienteUI extends javax.swing.JFrame {
-
-    /**
-     * Creates new form ClienteUI
-     */
+    ClienteController cliente;
+    
     public ClienteUI() {
         initComponents();
+        cliente = new ClienteController(this);
     }
 
     /**
@@ -41,7 +44,7 @@ public class ClienteUI extends javax.swing.JFrame {
         jFormattedTextCpf = new javax.swing.JFormattedTextField();
         jFormattedTextRg = new javax.swing.JFormattedTextField();
         jFormattedTextDataNascimento = new javax.swing.JFormattedTextField();
-        jFormattedTextField4 = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldFone = new javax.swing.JFormattedTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -75,7 +78,12 @@ public class ClienteUI extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Fechar Compra");
+        jButton1.setText("Finalizar Compra");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Atualizar/Remover Cliente");
 
@@ -94,10 +102,15 @@ public class ClienteUI extends javax.swing.JFrame {
         }
 
         try {
-            jFormattedTextField4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#########")));
+            jFormattedTextFieldFone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)########")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jFormattedTextFieldFone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextFieldFoneActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -131,7 +144,7 @@ public class ClienteUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jFormattedTextRg)
-                            .addComponent(jFormattedTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE))
+                            .addComponent(jFormattedTextFieldFone, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -157,7 +170,7 @@ public class ClienteUI extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
                     .addComponent(jFormattedTextDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jFormattedTextFieldFone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButtonCadastraCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -199,8 +212,16 @@ public class ClienteUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextNomeClienteActionPerformed
 
     private void jButtonCadastraClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastraClienteActionPerformed
-        // TODO add your handling code here:
+        this.cliente.cadastraCliente();
     }//GEN-LAST:event_jButtonCadastraClienteActionPerformed
+
+    private void jFormattedTextFieldFoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldFoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextFieldFoneActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -243,7 +264,7 @@ public class ClienteUI extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCadastraCliente;
     private javax.swing.JFormattedTextField jFormattedTextCpf;
     private javax.swing.JFormattedTextField jFormattedTextDataNascimento;
-    private javax.swing.JFormattedTextField jFormattedTextField4;
+    private javax.swing.JFormattedTextField jFormattedTextFieldFone;
     private javax.swing.JFormattedTextField jFormattedTextRg;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -258,4 +279,31 @@ public class ClienteUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextEnderecoCliente;
     private javax.swing.JTextField jTextNomeCliente;
     // End of variables declaration//GEN-END:variables
+
+    //Retorna os componentes do painel
+    //Para serem acessador no controlador
+    public JTextField getTexFildNome(){
+        return this.jTextNomeCliente;
+    }
+    
+    public JTextField getTextFieldEnderecoCliente(){
+        return this.jTextEnderecoCliente;
+    }
+    
+    public JFormattedTextField getFormattedTextFieldRg(){
+        return this.jFormattedTextRg;
+    }
+    
+    public JFormattedTextField getFormattedTextFielCpf(){
+        return this.jFormattedTextCpf;
+    }
+    
+    public JFormattedTextField getFormattedTextFielData(){
+        return this.jFormattedTextDataNascimento;
+    }
+    
+    public JFormattedTextField getFormattedTextFielFone(){
+        return this.jFormattedTextFieldFone;
+    }
+
 }
