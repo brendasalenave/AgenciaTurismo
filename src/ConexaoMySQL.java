@@ -5,14 +5,14 @@
 
 /*
     Banco de dados default = chamar de modo static
-    Alterar dados = instanciar classe
+    Alterar dados = instanciar classe e depois charmar de modo static
 */
 
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ConexaoMySQL {
+public class ConexaoMySQL{
     private static final String driver = "com.mysql.jdbc.Driver";
     private static String server = "localhost:3306";
     private static String user = "root";
@@ -58,7 +58,7 @@ public class ConexaoMySQL {
         }    
     }
     
-    public static boolean fechaConexao() { 
+    public static boolean fechaConexao(){ 
         try { 
             ConexaoMySQL.abreConexaoMySQL().close();
             return true; 
