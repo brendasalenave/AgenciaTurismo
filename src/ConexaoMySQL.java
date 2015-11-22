@@ -58,7 +58,7 @@ public class ConexaoMySQL {
         }    
     }
     
-    public static boolean FecharConexao() { 
+    public static boolean fechaConexao() { 
         try { 
             ConexaoMySQL.abreConexaoMySQL().close();
             return true; 

@@ -1,5 +1,6 @@
 
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /*
@@ -212,7 +213,13 @@ public class ClienteUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextNomeClienteActionPerformed
 
     private void jButtonCadastraClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastraClienteActionPerformed
-        this.cliente.cadastraCliente();
+        if(!this.cliente.verificaCadastro()){
+            this.cliente.cadastraCliente();
+            JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+        }else{
+            JOptionPane.showMessageDialog(this, "RG já cadastrado no sistema!");
+        }
+        this.cliente.limpaCampos();
     }//GEN-LAST:event_jButtonCadastraClienteActionPerformed
 
     private void jFormattedTextFieldFoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldFoneActionPerformed
