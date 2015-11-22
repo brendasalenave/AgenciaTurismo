@@ -1,6 +1,7 @@
 
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -13,6 +14,7 @@ public class ClienteUpdateUI extends javax.swing.JFrame {
     public ClienteUpdateUI() {
         initComponents();
         controller = new ClienteUpdateController(this);
+        controller.listaClientes();
     }
 
     /**
@@ -57,6 +59,11 @@ public class ClienteUpdateUI extends javax.swing.JFrame {
         jComboBoxClientes.setMaximumRowCount(12);
 
         jButton1.setText("Atualizar Dados");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Remover Cliente");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -208,12 +215,19 @@ public class ClienteUpdateUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        if(controller.dropClienteSelecionado()){
+            JOptionPane.showMessageDialog(this, "Cliente removido com sucesso!");
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        controller.setDadosCliente();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

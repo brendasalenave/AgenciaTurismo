@@ -99,7 +99,16 @@ public class ClienteUI extends javax.swing.JFrame {
             }
         });
 
-        jFormattedTextRg.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        try {
+            jFormattedTextRg.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##########")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormattedTextRg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextRgActionPerformed(evt);
+            }
+        });
 
         try {
             jFormattedTextDataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -243,6 +252,10 @@ public class ClienteUI extends javax.swing.JFrame {
     private void jFormattedTextCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextCpfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextCpfActionPerformed
+
+    private void jFormattedTextRgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextRgActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextRgActionPerformed
 
     /**
      * @param args the command line arguments
