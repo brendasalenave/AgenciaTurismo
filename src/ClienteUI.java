@@ -117,7 +117,7 @@ public class ClienteUI extends javax.swing.JFrame {
         }
 
         try {
-            jFormattedTextFieldFone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
+            jFormattedTextFieldFone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##########")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }

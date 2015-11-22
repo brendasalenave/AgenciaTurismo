@@ -20,7 +20,7 @@ public class ClienteController {
     public void cadastraCliente(){
         //Dados da query
         String nome = this.ui.getTexFildNome().getText();
-        String endereco = this.ui.getFormattedTextFielData().getText();
+        String endereco = this.ui.getTextFieldEnderecoCliente().getText();
         String fone = this.ui.getFormattedTextFielFone().getText();
         String data = this.ui.getFormattedTextFielData().getText();
         String rg = this.ui.getFormattedTextFieldRg().getText();

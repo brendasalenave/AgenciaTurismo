@@ -47,7 +47,6 @@ public class ClienteUpdateController {
         Connection conexao = ConexaoMySQL.abreConexaoMySQL();
         Statement stmt = null;
         ResultSet rs = null;
-        System.out.println(query);
         try{
             stmt = conexao.createStatement();
             rs = stmt.executeQuery(query);
@@ -57,7 +56,7 @@ public class ClienteUpdateController {
                 view.getTextFieldNome().setText(rs.getString(2));
                 view.getTextFieldEndereco().setText(rs.getString(3));
                 view.getFormattedTextFieldData().setText(rs.getString(4));
-                view.getFormattedTextFieldFone().setText(rs.getString(5));
+                view.getTextFieldFone().setText(rs.getString(5));
             }
         }catch(SQLException ex){
             Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
@@ -68,8 +67,23 @@ public class ClienteUpdateController {
         view.revalidate();
     }
     
-    public void salvaAlteracoesCliente(){
+    public boolean salvaAlteracoesCliente(){
+        String rg = (String) view.getTextFieldRg().getText();
+        String endereco = (String) view.getTextFieldEndereco().getText();
+        String fone = (String) view.getTextFieldFone().getText();
         
+        Connection conexao = ConexaoMySQL.abreConexaoMySQL();
+        Statement stmt = null;
+        String query = "UPDATE cliente SET telefone = '" + fone + "', endereco = '" + endereco + "' WHERE rg = '" + rg + "'";
+        try {
+            stmt = conexao.createStatement();
+            stmt.executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteUpdateController.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        
+        return true;
     }
     
     public boolean dropClienteSelecionado(){

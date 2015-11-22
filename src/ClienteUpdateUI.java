@@ -39,13 +39,13 @@ public class ClienteUpdateUI extends javax.swing.JFrame {
         jTextFieldNome = new javax.swing.JTextField();
         jTextFieldEndereco = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jFormattedTextFieldFone = new javax.swing.JFormattedTextField();
         jLabel6 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jFormattedTextFieldData = new javax.swing.JFormattedTextField();
         jLabel7 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        jTextFieldFone = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -82,19 +82,21 @@ public class ClienteUpdateUI extends javax.swing.JFrame {
 
         jLabel4.setText("Nome:");
 
-        jLabel5.setText("Endereço:");
+        jTextFieldNome.setEnabled(false);
 
-        try {
-            jFormattedTextFieldFone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        jLabel5.setText("Endereço:");
 
         jLabel6.setText("Telefone: ");
 
         jButton3.setText("Salvar Alterações");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jFormattedTextFieldData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("##/##/####"))));
+        jFormattedTextFieldData.setEnabled(false);
 
         jLabel7.setText("Data Nascimento:");
 
@@ -122,8 +124,8 @@ public class ClienteUpdateUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jFormattedTextFieldFone, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                            .addComponent(jFormattedTextFieldData))
+                            .addComponent(jFormattedTextFieldData)
+                            .addComponent(jTextFieldFone, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
@@ -175,11 +177,10 @@ public class ClienteUpdateUI extends javax.swing.JFrame {
                     .addComponent(jTextFieldEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jFormattedTextFieldFone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel6))
-                    .addComponent(jButton3))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3)
+                    .addComponent(jTextFieldFone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -229,6 +230,12 @@ public class ClienteUpdateUI extends javax.swing.JFrame {
         controller.setDadosCliente();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        if(controller.salvaAlteracoesCliente()){
+            JOptionPane.showMessageDialog(this, "Dados alterados com sucesso!");
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -271,7 +278,6 @@ public class ClienteUpdateUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBoxClientes;
     private javax.swing.JFormattedTextField jFormattedTextFieldData;
-    private javax.swing.JFormattedTextField jFormattedTextFieldFone;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -286,37 +292,38 @@ public class ClienteUpdateUI extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextFieldCpf;
     private javax.swing.JTextField jTextFieldEndereco;
+    private javax.swing.JTextField jTextFieldFone;
     private javax.swing.JTextField jTextFieldNome;
     private javax.swing.JTextField jTextFieldRg;
     // End of variables declaration//GEN-END:variables
 
-//Retorna os componentes da tela para a classe de controle
-public JTextField getTextFieldCpf(){
-    return this.jTextFieldCpf;
-}
+    //Retorna os componentes da tela para a classe de controle
+    public JTextField getTextFieldCpf(){
+        return this.jTextFieldCpf;
+    }
 
-public JTextField getTextFieldRg(){
-    return this.jTextFieldRg;
-}
+    public JTextField getTextFieldRg(){
+        return this.jTextFieldRg;
+    }
 
-public JTextField getTextFieldNome(){
-    return this.jTextFieldNome;
-}
+    public JTextField getTextFieldNome(){
+        return this.jTextFieldNome;
+    }
 
-public JTextField getTextFieldEndereco(){
-    return this.jTextFieldEndereco;
-}
+    public JTextField getTextFieldEndereco(){
+        return this.jTextFieldEndereco;
+    }
 
-public JFormattedTextField getFormattedTextFieldData(){
-    return this.jFormattedTextFieldData;
-}
+    public JFormattedTextField getFormattedTextFieldData(){
+        return this.jFormattedTextFieldData;
+    }
 
-public JFormattedTextField getFormattedTextFieldFone(){
-    return this.jFormattedTextFieldFone;
-}
+    public JTextField getTextFieldFone(){
+        return this.jTextFieldFone;
+    }
 
-public JComboBox getComboBoxClientes(){
-    return this.jComboBoxClientes;
-}
+    public JComboBox getComboBoxClientes(){
+        return this.jComboBoxClientes;
+    }
 
 }
