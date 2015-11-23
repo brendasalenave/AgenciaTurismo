@@ -49,7 +49,7 @@ public class ClienteUI extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Cadastro de Clientes"));
 
-        jLabelCliente.setText("None do cliente:");
+        jLabelCliente.setText("Nome do cliente:");
 
         jTextNomeCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

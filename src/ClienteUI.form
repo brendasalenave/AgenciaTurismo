@@ -153,7 +153,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabelCliente">
           <Properties>
-            <Property name="text" type="java.lang.String" value="None do cliente:"/>
+            <Property name="text" type="java.lang.String" value="Nome do cliente:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextNomeCliente">
